@@ -1,0 +1,6 @@
+chuf: incorrect number of arguments
+Usage: chuf BEGIN END FILTER
+Transform sections of stdin by passing through a filter program.
+Sections are defined by user selected BEGIN and END identifiers.
+Options:
+  -v	display chuf version
