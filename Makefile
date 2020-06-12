@@ -4,13 +4,9 @@ PNAME = chuf
 
 RTEMPLATE ?= ../repo-template
 
-all: goUtil doc
-
-doc: docMan
+all: goUtil docMan
 
 clean: cleanGoUtil cleanCheck
-
-cleanDoc: cleanDocMain cleanDocMan
 
 install: installGoUtil installMan
 
@@ -18,7 +14,7 @@ uninstall: uninstallGoUtil uninstallMan
 
 .DEFAULT_GOAL := all
 
-.PHONY: all doc clean cleanDoc install uninstall
+.PHONY: all clean install uninstall
 
 #---Helper Macros to Remove Files---
 
@@ -136,5 +132,4 @@ todo:
 		-exec grep -Hn TODO '{}' ';'
 
 .PHONY: todo
-
-# vim:set noet tw=80:.POSIX:
+# vim:set noet tw=80:
