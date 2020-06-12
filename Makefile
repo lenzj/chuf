@@ -6,7 +6,7 @@ RTEMPLATE ?= ../repo-template
 
 all: goUtil doc
 
-doc: docMain docMan
+doc: docMan
 
 clean: cleanGoUtil cleanCheck
 
@@ -90,7 +90,7 @@ uninstallMan:
 	$(RMDIR_IF_EMPTY) $(MANDIR)/man1
 	$(RMDIR_IF_EMPTY) $(MANDIR)
 
-.PHONY: installMan uninstallMan
+.PHONY: docMan cleanDocMan installMan uninstallMan
 
 #---Test/Check Section---
 
@@ -114,9 +114,6 @@ regenDocMain:
 
 #---Generate Makefile---
 
-Makefile: template/Makefile.got
-	pgot -i ":$(RTEMPLATE)" -o $@ $<
-
 regenMakefile:
 	pgot -i ":$(RTEMPLATE)" -o Makefile template/Makefile.got
 
@@ -129,11 +126,15 @@ lint:
 		-type f -and -not -name 'Makefile' \
 		-exec grep -Hn '<no value>' '{}' ';'
 
+.PHONY: lint
+
 #---TODO Helper Target---
 
 todo:
 	@find . -path ./.git -prune -or \
 		-type f -and -not -name 'Makefile' \
 		-exec grep -Hn TODO '{}' ';'
+
+.PHONY: todo
 
 # vim:set noet tw=80:.POSIX:
